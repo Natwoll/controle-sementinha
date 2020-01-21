@@ -1,0 +1,30 @@
+<div id="input-group" class="input-group">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-card class="input-card">
+            <mat-card-header>
+                <mat-card-title>
+                    Controle Sementinha
+                </mat-card-title>
+                <mat-icon>sentiment_very_satisfied</mat-icon>               
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-form-field class="input-field">
+                <input matInput placeholder="Usuário" id="input-user"
+                formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">O nome de usuário é obrigatório</div>
+                </div>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="input-field">
+                <input matInput placeholder="Senha" id="input-password" type="password"
+                formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">A senha é obrigatória</div>
+                </div>
+            </mat-form-field>
+            <button mat-stroked-button id="btn-login" [disabled]="loading">Login</button>
+            <button mat-stroked-button id="btn-register">Registro</button>
+        </mat-card>
+    </form>
+</div>

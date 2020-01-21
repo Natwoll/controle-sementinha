@@ -1,0 +1,28 @@
+<div class="history-group">
+    <mat-card class="evento" *ngFor="let history of histories">
+        <h1 style="margin-left: 15px;margin-right: 15px;">Evento - {{history.eventDate | date: 'dd/MM/yyyy'}}</h1>
+        <div class="alunos">
+            <div class="aluno" *ngFor="let aluno of history.students">
+                <mat-card>
+                    <mat-card-content class="aluno-description" *ngIf="history.students.length <= 0">
+                        Nenhum aluno
+                    </mat-card-content>
+                    <mat-card-header *ngIf="history.students.length > 0">
+                        <mat-card-title>{{aluno.name}}</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content class="aluno-description">
+                        <ul>
+                            <li>Idade: {{aluno.age}}</li>
+                            <li>Classe: {{aluno.class}}</li>
+                            <li>Pai/Mãe: {{aluno.sponsor}}</li>
+                            <li *ngIf="aluno.released">Liberado</li>
+                            <li *ngIf="!aluno.released">Não Liberado</li>
+                            <li>Entrada: {{aluno.entry | date: 'dd/MM/yyyy HH:mm:ss'}}</li>
+                            <li>Saída: {{aluno.departure | date: 'dd/MM/yyyy HH:mm:ss'}}</li>
+                        </ul>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </mat-card>
+</div>

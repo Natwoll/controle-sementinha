@@ -1,0 +1,59 @@
+<div id="input-group" class="input-group">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-list>
+        <mat-list-item>
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Nome" id="input-name" formControlName="firstName"
+              [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+            <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+              <div *ngIf="f.firstName.errors.required">O nome é obrigatório</div>
+            </div>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Sobre Nome" id="input-lastname" formControlName="lastName"
+              [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+              <div *ngIf="f.lastName.errors.required">O sobrenome é obrigatório</div>
+            </div>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Email" id="input-email" type="email" formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }" (blur)="onEmailBlur($event)">
+            <div *ngIf="!emailValid && !loadingEmail" class="invalid-feedback">Email inválido</div>
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">O email é obrigatório</div>
+            </div>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Senha" id="input-password" type="password" formControlName="password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">A senha é obrigatória</div>
+            </div>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field class="input-field">
+            <input matInput placeholder="Repetir" id="input-passwordR" type="password" formControlName="passwordRepeat"
+              [ngClass]="{ 'is-invalid': submitted && f.passwordRepeat.errors }">
+            <div *ngIf="submitted && f.passwordRepeat.errors" class="invalid-feedback">
+              <div *ngIf="f.passwordRepeat.errors.required">É obrigatório confirmar a senha</div>
+            </div>
+            <div *ngIf="!passwordValid" class="invalid-feedback">
+              Senhas não coincidem
+            </div>
+          </mat-form-field>
+        </mat-list-item>
+      </mat-list>
+      <button mat-stroked-button id="btn-register" type="submit" [disabled]="loading">Cadastrar</button>
+    </mat-card>
+  </form>
+</div>

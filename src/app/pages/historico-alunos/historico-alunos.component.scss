@@ -1,0 +1,26 @@
+.history-group {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.evento{
+    margin-top: 10px;
+    margin-left: 10px;
+    float: left;
+}
+
+.aluno{
+    margin-top: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+.aluno-description{
+    margin-left: 20px;
+}
+
+.alunos {
+    overflow-x: scroll;
+    max-width: 100%;
+}

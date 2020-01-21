@@ -1,0 +1,164 @@
+<mat-sidenav-container>
+    <mat-sidenav [(opened)]="opened" position="end">
+        <form [formGroup]="eventForm" #formDirective="ngForm" (ngSubmit)="onSubmit(formDirective)">
+            <mat-form-field class="input-field">
+                <input matInput placeholder="Nome do Evento" required formControlName="name">
+            </mat-form-field>
+            <mat-form-field class="input-field">
+                <input matInput [matDatepicker]="picker" placeholder="Data" required  formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="input-field-time">
+                <input matInput placeholder="Horas" type="number" value="00"  formControlName="hours">
+            </mat-form-field>
+            :
+            <mat-form-field class="input-field-time">
+                <input matInput placeholder="Minutos" type="number" value="00"  formControlName="minutes">
+            </mat-form-field>
+            <mat-form-field class="input-field textarea">
+                <textarea matInput placeholder="Descrição" formControlName="description"></textarea>
+            </mat-form-field>
+            <div id="colorTAG" style="text-align: center; border-radius: 10px; padding: 5px;">
+                <b>Cor</b>
+            </div>
+            <br>
+            <div id="colors-pallet" style="text-align: center;">
+                <button mat-mini-fab type="button" class="color-red" (click)="changeColor('red')"></button>
+                <button mat-mini-fab type="button" class="color-yellow" (click)="changeColor('yellow')"></button>
+                <button mat-mini-fab type="button" class="color-green" (click)="changeColor('green')"></button>
+                <button mat-mini-fab type="button" class="color-blue" (click)="changeColor('blue')"></button>
+                <button mat-mini-fab type="button" class="color-magenta" (click)="changeColor('magenta')"></button>
+            </div>
+            <br>
+            <button mat-raised-button type="submit" color="warn" class="input-field">Cadastrar Evento</button>
+        </form>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <button mat-fab color="primary" style="float: right;" (click)="newEvent();">
+            <mat-icon>add</mat-icon>
+        </button>
+        <div class="event-group">
+            <mat-card id="today-events" *ngIf="today.length > 0" class="event-container">
+                <mat-card-header>
+                    <mat-card-title>
+                        Eventos Hoje
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let evento of today" style="height: 100%;">
+                        <mat-card class="event-item" 
+                        [ngClass]="{'event-item-red': evento.color === 'color-red',
+                        'event-item-yellow': evento.color === 'color-yellow',
+                        'event-item-green': evento.color === 'color-green',
+                        'event-item-purple': evento.color === 'color-purple',
+                        'event-item-blue': evento.color === 'color-blue'}">
+                            <mat-card-content>
+                                <mat-card-title>{{evento.name}}</mat-card-title>
+                                <mat-card-subtitle>Data: {{evento.date | date: 'dd/MM/yyyy HH:mm:ss'}}</mat-card-subtitle>
+                                {{evento.description}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card id="thisweek-events" *ngIf="week.length > 0" class="event-container">
+                <mat-card-header>
+                    <mat-card-title>
+                        Eventos nesta Semana
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let evento of week" style="height: 100%;">
+                        <mat-card class="event-item" 
+                        [ngClass]="{'event-item-red': evento.color === 'color-red',
+                        'event-item-yellow': evento.color === 'color-yellow',
+                        'event-item-green': evento.color === 'color-green',
+                        'event-item-purple': evento.color === 'color-purple',
+                        'event-item-blue': evento.color === 'color-blue'}">
+                            <mat-card-content>
+                                <mat-card-title>{{evento.name}}</mat-card-title>
+                                <mat-card-subtitle>Data: {{evento.date | date: 'dd/MM/yyyy HH:mm:ss'}}</mat-card-subtitle>
+                                {{evento.description}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card id="thismonth-events" *ngIf="month.length > 0" class="event-container">
+                <mat-card-header>
+                    <mat-card-title>
+                        Eventos neste Mês
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let evento of month" style="height: 100%;">
+                        <mat-card class="event-item" 
+                        [ngClass]="{'event-item-red': evento.color === 'color-red',
+                        'event-item-yellow': evento.color === 'color-yellow',
+                        'event-item-green': evento.color === 'color-green',
+                        'event-item-purple': evento.color === 'color-purple',
+                        'event-item-blue': evento.color === 'color-blue'}">
+                            <mat-card-content>
+                                <mat-card-title>{{evento.name}}</mat-card-title>
+                                <mat-card-subtitle>Data: {{evento.date | date: 'dd/MM/yyyy HH:mm:ss'}}</mat-card-subtitle>
+                                {{evento.description}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <mat-card id="other-events" *ngIf="other.length > 0" class="event-container">
+                <mat-card-header>
+                    <mat-card-title>
+                        Todos Eventos
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let evento of other" style="height: 100%;">
+                        <mat-card class="event-item" 
+                        [ngClass]="{'event-item-red': evento.color === 'color-red',
+                        'event-item-yellow': evento.color === 'color-yellow',
+                        'event-item-green': evento.color === 'color-green',
+                        'event-item-purple': evento.color === 'color-purple',
+                        'event-item-blue': evento.color === 'color-blue'}">
+                            <mat-card-content>
+                                <mat-card-title>{{evento.name}}</mat-card-title>
+                                <mat-card-subtitle>Data: {{evento.date | date: 'dd/MM/yyyy HH:mm:ss'}}</mat-card-subtitle>
+                                {{evento.description}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <!--EVENTOS PASSADOS-->
+            <mat-card id="other-events" *ngIf="listPastEvents" class="event-container">
+                <mat-card-header>
+                    <mat-card-title>
+                        Eventos Anteriores
+                    </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let evento of past" style="height: 100%;">
+                        <mat-card class="event-item" 
+                        [ngClass]="{'event-item-red': evento.color === 'color-red',
+                        'event-item-yellow': evento.color === 'color-yellow',
+                        'event-item-green': evento.color === 'color-green',
+                        'event-item-purple': evento.color === 'color-purple',
+                        'event-item-blue': evento.color === 'color-blue'}">
+                            <mat-card-content>
+                                <mat-card-title>{{evento.name}}</mat-card-title>
+                                <mat-card-subtitle>Data: {{evento.date | date: 'dd/MM/yyyy HH:mm:ss'}}</mat-card-subtitle>
+                                {{evento.description}}
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <button mat-raised-button color="warn" style="margin-top: 10px;" (click)="showPastEvents()">
+                Listar Eventos Passados <mat-icon>history</mat-icon>
+            </button>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

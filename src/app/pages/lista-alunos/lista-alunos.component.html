@@ -1,0 +1,31 @@
+<div class="alunos-group">
+    <div class="alunos-title">
+      <mat-form-field>
+        <input matInput placeholder="Pesquisar Aluno" [(ngModel)]="searchInput">
+      </mat-form-field>
+      <button mat-raised-button color="warn" (click)="endEvent()" *ngIf="alunos.length > 0">Finalizar Evento</button>
+    </div>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let aluno of alunos | alunoPesquisa:searchInput">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div style="width: 100px;">Nome: {{aluno.name}}</div>
+              </mat-panel-title>
+              <mat-panel-description style="text-align: left;">
+                Situação: <div class="attribute">
+                  <div *ngIf="aluno.released"  class="status-released">Liberado</div>
+                  <div *ngIf="!aluno.released" class="status-waiting">Aguardando</div>
+                </div>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="description-container">
+                <div class="attribute">Idade: {{aluno.age}}</div>
+                <div class="attribute">Classe: {{aluno.class}}</div>
+                <div class="attribute">Pai/Mãe: {{aluno.sponsor}}</div>
+                <div class="attribute">Entrada: {{aluno.entry | date:'dd/MM/yyyy HH:mm:ss'}}</div>
+                <br>
+                <button mat-stroked-button style="float: right;" (click)="releaseAluno(aluno);">Liberar Estudante</button>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

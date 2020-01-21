@@ -1,0 +1,36 @@
+.alunos-group{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.status-released{
+    padding: 5px;
+    border-radius: 5px;
+    background: limegreen;
+}
+
+.status-waiting{
+    padding: 5px;
+    border-radius: 5px;
+    background: indianred;
+}
+
+.aluno-description{
+    margin-top: -15px;
+}
+
+.description-container{
+    margin-left: 25px;
+}
+
+.attribute{
+    margin-left: 15px;
+    float: left;
+}
+
+.alunos-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    margin: 10px 0 10px 0
+}

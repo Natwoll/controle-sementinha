@@ -1,0 +1,85 @@
+mat-sidenav-container {
+    height: 90%;
+}
+
+mat-sidenav, mat-sidenav-content {
+    padding: 16px;
+}
+
+mat-sidenav{
+    width: 300px;
+}
+
+.event-group{
+    width: 90%;
+}
+
+.event-container{
+    float: left;
+    width: 90%;
+    margin-top: 5px;
+}
+
+.event-item{
+    float: left;
+    border-top: solid 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    width: 150px;
+}
+
+.event-item-red {
+    border-top: solid 5px red;
+}
+
+.event-item-yellow {
+    border-top: solid 5px yellow;
+}
+
+.event-item-blue {
+    border-top: solid 5px cornflowerblue;
+}
+
+.event-item-green {
+    border-top: solid 5px green;
+}
+
+.event-item-purple {
+    border-top: solid 5px magenta;
+}
+
+.input-field{
+    width: 100%;
+}
+
+.input-field-time{
+    width: 45%;
+}
+
+.input-field textarea{
+    height: 100px;
+}
+
+mat-mini-fab{
+    margin-right: 5px;
+}
+
+.color-red, .color-yellow, .color-green, .color-blue, .color-purple{
+    margin-right: 5px;
+}
+
+.color-red{
+    background: red;
+}
+.color-yellow{
+    background: yellow;
+}
+.color-green{
+    background: green;
+}
+.color-blue{
+    background: cornflowerblue;
+}
+.color-magenta{
+    background: magenta;
+}

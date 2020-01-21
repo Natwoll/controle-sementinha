@@ -1,0 +1,27 @@
+.input-group{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-group form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-card{
+    width: 300px;
+    margin-top: 50px;
+    margin-right: 3%;
+    float: right;
+}
+
+.input-field{
+    width: 100%;
+}
+
+button{
+    margin-right: 5px;
+}

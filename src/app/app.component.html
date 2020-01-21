@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" *ngIf="loggedUser">
+  <button mat-button (click)="gotoCadastroAluno();">
+    <mat-icon class="icon-link">person_add</mat-icon>
+  </button>
+  <br>
+  <button mat-button (click)="gotoListaAlunos();">
+    <mat-icon class="icon-link">supervised_user_circle</mat-icon>
+  </button>
+  <br>
+  <button mat-button (click)="gotoHistoricoAlunos();">
+    <mat-icon class="icon-link">subject</mat-icon>
+  </button>
+  <button mat-button (click)="gotoCalendario();">
+    <mat-icon class="icon-link">calendar_today</mat-icon>
+  </button>
+  <button mat-button (click)="gotoVoluntarios();">
+    <mat-icon class="icon-link">sports_kabaddi</mat-icon>
+  </button>
+  <span class="fill-remaining-space"></span>
+  <button mat-raised-button id="logout" color="warn" style="margin-left: 15px;" (click)="logout();">Sair</button>
+</mat-toolbar>
+<router-outlet></router-outlet>
