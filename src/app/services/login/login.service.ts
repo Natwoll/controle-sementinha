@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import User from '../../models/user.models';
 import LoginResponse from '../../models/login.models';
 
+import { environment } from '../../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +25,7 @@ export class LoginService {
   }
 
   login(username, password): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>('http://64.225.46.4:3333/login', { username, password }).pipe(map(response => {
+    return this.httpClient.post<LoginResponse>(`${environment.apiUrl}/login`, { username, password }).pipe(map(response => {
       const user = response.user[0]
 
       if(!user || !response.success)
